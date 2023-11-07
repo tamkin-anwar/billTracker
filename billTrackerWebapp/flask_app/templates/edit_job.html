@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Edit Job</title>
+</head>
+<body>
+    <div class="top-container">
+        <br>
+    <h1 class="text-center">Edit bill</h1>
+        <div class="text-right">
+            <a href="/dashboard" class="btn btn-success">Dashboard</a>
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+    <form action="/update/job" method="post" class="col-6 mx-auto">
+        <input type="hidden" name="id" value={{show.id}}>
+        <div class="form-group">
+            <label for="title">Bill Name:</label>
+            <input type="text" name="title"  class="form-control" value="{{show.title}}">
+        </div>
+        <div class="form-group">
+            <label for="network":>Amount:</label>
+            <input type="text" name="network"  class="form-control" value="{{show.network}}">
+        </div>
+        <div class="form-group">
+            <label for="description">Notes:</label>
+            <input type="text" name="description"  class="form-control" value="{{show.description}}">
+        </div>
+        <div class="form-group">
+            <label for="release_date">Due Date: {{show.release_date.strftime("%b %d %Y")}} </label>
+            <input type="date" name="release_date"  class="form-control" value="{{show.release_date}}" placeholder="{{show.release_date}}">
+        </div>
+        <br>
+        <div class="text-center">
+            <a href="/dashboard" class="btn btn-secondary">Cancel</a>
+            <input type="submit" value="Update" class="btn btn-primary">
+            {% if show.user_id == user.id %}
+            <a href="/edit/job/{{ show.id }}" class="btn btn-primary">Edit</a>
+            <a href="/destroy/job/{{ show.id }}" class="btn btn-danger">Remove</a>
+            {% endif %}
+        </div>
+    </form>
+</body>
+</html>

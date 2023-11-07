@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Add new Job</title>
+</head>
+<body>
+    <div class="top-container">
+        <br>
+    <h1 class="text-center">Add a Bill</h1>
+        <div class="text-right">
+            <a href="/dashboard" class="btn btn-success">Dashboard</a>
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+    {% with messages = get_flashed_messages(category_filter=['create']) %}
+        {% if messages %}
+        <div class="alert alert-danger" role="alert">
+            <strong>ERROR!</strong>
+                {% for message in messages %}
+                <p>{{message}}</>
+                {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+    <form action="/create/job" method="post" class="col-6 mx-auto">
+        <div class="form-group">
+            <label for="title">Bill Name:</label>
+            <input type="text" name="title"  class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="network">Amount:</label>
+            <input type="text" name="network"  class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="description">Notes:</label>
+            <input type="text" name="description"  class="form-control">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="release_date">Due Date: </label>
+            <input type="date" name="release_date"  class="form-control" value="release_date" placeholder="">
+        </div>
+        <br>
+        <div class="text-center">
+            <a href="/dashboard" class="btn btn-secondary">Cancel</a>
+            <input type="submit" value="Add" class="btn btn-primary">
+        </div>
+    </form>
+</body>
+</html>

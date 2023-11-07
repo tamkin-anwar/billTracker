@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="top-container">
+        <h1 class="text-center">Hello {{user.first_name}}!</h1>
+            <div class="text-right">
+                <a href="/new/job" class="btn btn-warning">Add Bill</a>
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </div>
+    </div>
+    <br>
+    <div class="container">
+        <div>
+            <h2>Your bills</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Bill Name</th>
+                        <th>Amount</th>
+                        <th>Due Date</th>
+                        <th>Paid</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for show in shows %}
+                    <tr>
+                        <td>{{ show.title }}</td>
+                        <td>{{ show.network }}</td>
+                        <td>{{show.release_date.strftime("%b %d %Y")}}</td>
+                        <td><input type="checkbox" name="" id=""></td>
+                        <td>
+                            <a href="/view/job/{{ show.id }}">View</a> |
+                            <a href="/edit/job/{{ show.id }}">Edit</a> |
+                            <a href="/destroy/job/{{ show.id }}">Remove</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
